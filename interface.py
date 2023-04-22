@@ -3,10 +3,11 @@ from PIL import ImageTk, Image
 import cv2 
 from cv2 import *
 import numpy as np
-import face_recognition as fr
+#import face_recognition as fr
 import os
 import random
 from datetime import datetime
+
 
 def app_definition():    
 
@@ -107,3 +108,5 @@ def take_picture():
 
         else:
             print("No se detectó ninguna cámara para poder tomar la foto bro... :c")
+
+app_definition()
