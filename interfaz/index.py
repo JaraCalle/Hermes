@@ -1,4 +1,5 @@
 # Importaciones
+import interfaz.registro as gui
 import customtkinter as ctk
 import os
 from PIL import ImageTk, Image
@@ -42,11 +43,38 @@ class Index:
         etiqueta.pack(pady=15)
 
         # Botón registro
-        ctk.CTkButton(self.root, text="Registrar persona").pack()
+        ctk.CTkButton(self.root, text="Registrar persona", command=self.btn_registro).pack()
 
         # Botón toma asistencia
-        ctk.CTkButton(self.root, text="Tomar asistencia").pack(pady=25)
+        ctk.CTkButton(self.root, text="Tomar asistencia", command=self.btn_asistencia).pack(pady=25)
 
 
         # Bucle de ejecución
+        self.root.mainloop()
+
+    # Función para el botón "registrar persona" 
+    def btn_registro(self):
+        # Destuir ventana principal
+        self.root.destroy()
+        # Instanciación de la ventana registro
+        ventana_registro = gui.Registro()
+
+    # Función para el botón "tomar asistencia"
+    def btn_asistencia(self):
+        # Destruir ventana principal
+        self.root.destroy()
+        # Instanciación de la ventana asistencia
+        ventana_asistencia = Asistencia()
+
+
+class Asistencia:
+    def __init__(self):
+        # Creación de la ventana principal
+        self.root = ctk.CTk()
+        self.root.title("Hermes - Toma de asistencia")
+        self.root.iconbitmap(os.path.join(carpeta_imagenes, "logo.ico"))
+        self.root.geometry("450x300")
+        self.root.resizable(False,False)
+
+        # Contenido de la ventana
         self.root.mainloop()
