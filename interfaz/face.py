@@ -5,6 +5,11 @@ import os
 import random
 from datetime import datetime
 
+carpeta_principal = os.path.dirname(__file__)
+carpeta_fotos = os.path.join(carpeta_principal,"fotos")
+carpeta_src= os.path.join(carpeta_principal,"src")
+archivo_csv= os.path.join(carpeta_src,"attendance.csv")
+
 def codrostros(images):
     listacod = []
 
@@ -16,15 +21,22 @@ def codrostros(images):
     return listacod
 
 def horario(nombre):
-    with open("src/attendance.csv","r+") as h:
+    with open(archivo_csv,"r+") as h:
         data = h.readline()
         listanombres = []
+        cambio= "si"
 
-        for line in data:
-            entrada = line.split(",")
+        while data:
+            entrada = data.split(",")
             listanombres.append(entrada[0])
+            data= h.readline()
 
-        if nombre not in listanombres:
+        for a in listanombres:
+            if nombre==a:
+                cambio= "no"
+            
+
+        if cambio=="si":
             info = datetime.now()
             fecha = info.strftime("%Y:%m:%d")
             hora = info.strftime("%H:%M:%S")
@@ -33,7 +45,7 @@ def horario(nombre):
             print(info)
 def main():
     #Accedemos a la carpeta
-    path = "src/fotos"
+    path = carpeta_fotos
     images = []
     clases = []
     lista = os.listdir(path)
